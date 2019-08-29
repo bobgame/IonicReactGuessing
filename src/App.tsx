@@ -2,38 +2,40 @@ import React from 'react';
 import { Redirect, Route, BrowserRouter as Router } from 'react-router-dom';
 import { IonApp, IonPage } from '@ionic/react';
 
-import Home from './pages/Home';
-import List from './pages/List';
+import HomePage from './pages/Home/Home';
+import PlayPage from './pages/Play/Play';
+import { Row, Col } from 'antd'
 
-/* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
-
-/* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
-
-/* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
+import { Provider } from 'react-redux'
+import store from './store'
+import 'antd/dist/antd.css'
+import './style.scss'
+import AboutPage from './pages/About/About';
+import SettingPage from './pages/Setting/Setting';
+import HelpPage from './pages/Help/Help';
 
 /* Theme variables */
-import './theme/variables.css';
+// import './theme/variables.css';
 
 const App: React.FunctionComponent = () => (
-  <IonApp>
-    <IonPage id="main">
-      <Router>
-        <Route path="/home" component={Home} exact={true} />
-        <Route path="/list" component={List} exact={true} />
-        <Route exact path="/" render={() => <Redirect to="/home" />} />
-      </Router>
-    </IonPage>
-  </IonApp>
+  <Provider store={store}>
+    <IonApp>
+      <IonPage id="main">
+        <Row className="h-100" type="flex" justify="space-around" align="middle">
+          <Col xs={20} sm={16} md={12} lg={8} xl={6}>
+            <Router>
+              <Route path="/home" component={HomePage} exact={true} />
+              <Route path="/play" component={PlayPage} exact={true} />
+              <Route path="/setting" component={SettingPage} exact={true} />
+              <Route path="/help" component={HelpPage} exact={true} />
+              <Route path="/about" component={AboutPage} exact={true} />
+              <Route exact path="/" render={() => <Redirect to="/home" />} />
+            </Router>
+          </Col>
+        </Row>
+      </IonPage>
+    </IonApp>
+  </Provider>
 );
 
 export default App;
