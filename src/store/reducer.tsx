@@ -4,7 +4,7 @@ import {
   addUseItemReducer, resetGameReducer, closeGameOverReducer, deleteNumberReducer, clickGuessReducer, clickNumberReducer
 } from './play-reducer'
 
-export default (state = defalutState, action) => {
+export default (state = defalutState, action: any) => {
   switch (action.type) {
     case PLAY_TYPES.CLICK_NUMBER:
       return clickNumberReducer(state, action.value)

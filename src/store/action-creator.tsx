@@ -1,7 +1,7 @@
 import { PLAY_TYPES } from './action-type'
 // import Axios from 'axios'
 
-export const actionClickNumber = (value) => ({
+export const actionClickNumber = (value: any) => ({
   type: PLAY_TYPES.CLICK_NUMBER,
   value
 })
